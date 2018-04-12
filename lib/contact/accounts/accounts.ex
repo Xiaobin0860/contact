@@ -84,7 +84,7 @@ defmodule Contact.Accounts do
   end
 
   def authenticate(%{user: user, password: password}) do
-    case Comeonin.Bcrypt.checkpw(password, user.password_digest) do
+    case Comeonin.Pbkdf2.checkpw(password, user.password_digest) do
       true ->
         ContactWeb.Guardian.encode_and_sign(user)
 

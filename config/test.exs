@@ -11,9 +11,9 @@ config :logger, level: :warn
 
 # Configure your database
 config :contact, Contact.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  adapter: Ecto.Adapters.MySQL,
+  username: "root",
+  password: "123456",
   database: "contact_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

@@ -2,7 +2,7 @@
   "name": "contact-react",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4000",
+  "proxy": "http://localhost:40000",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",

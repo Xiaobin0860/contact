@@ -48,7 +48,7 @@ defmodule Contact.Accounts.User do
   defp hash_password(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
-        put_change(changeset, :password_digest, Comeonin.Bcrypt.hashpwsalt(password))
+        put_change(changeset, :password_digest, Comeonin.Pbkdf2.hashpwsalt(password))
 
       _ ->
         changeset

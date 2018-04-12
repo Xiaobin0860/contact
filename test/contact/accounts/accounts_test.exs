@@ -104,13 +104,13 @@ defmodule Contact.AccountsTest do
 
   describe "authenticate" do
     test "should validate a password against its users stored hash" do
-      user = insert(:user, password_digest: Comeonin.Bcrypt.hashpwsalt("password"))
+      user = insert(:user, password_digest: Comeonin.Pbkdf2.hashpwsalt("password"))
 
       assert {:ok, _token, _claims} = Accounts.authenticate(%{user: user, password: "password"})
     end
 
     test "should return mismatch if password doesn't match stored hash" do
-      user = insert(:user, password_digest: Comeonin.Bcrypt.hashpwsalt("password"))
+      user = insert(:user, password_digest: Comeonin.Pbkdf2.hashpwsalt("password"))
 
       assert {:error, :unauthorized} = Accounts.authenticate(%{user: user, password: "notthepassword"})
     end

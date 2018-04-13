@@ -37,9 +37,11 @@ defmodule Contact.AccountsTest do
     test "get users succeeds with valid id" do
       expected_user = insert(:user)
 
-      assert %User{} = user = Accounts.get_user(expected_user.id)
-
-      assert expected_user == user
+      assert %User{} = result_user = Accounts.get_user(expected_user.id)
+      assert result_user.email == expected_user.email
+      assert result_user.username == expected_user.username
+      assert result_user.first_name == expected_user.first_name
+      assert result_user.last_name == expected_user.last_name
     end
   end
 
@@ -60,7 +62,10 @@ defmodule Contact.AccountsTest do
       expected_user = insert(:user, username: "bob")
 
       assert %User{} = result_user = Accounts.get_user_by(:username, expected_user.username)
-      assert result_user == expected_user
+      assert result_user.email == expected_user.email
+      assert result_user.username == expected_user.username
+      assert result_user.first_name == expected_user.first_name
+      assert result_user.last_name == expected_user.last_name
     end
 
     test "returns error when no user found by username" do
@@ -73,7 +78,10 @@ defmodule Contact.AccountsTest do
       expected_user = insert(:user, email: "bob@bob.co")
 
       assert %User{} = result_user = Accounts.get_user_by(:email, "bob@bob.co")
-      assert result_user == expected_user
+      assert result_user.email == expected_user.email
+      assert result_user.username == expected_user.username
+      assert result_user.first_name == expected_user.first_name
+      assert result_user.last_name == expected_user.last_name
     end
   end
 
@@ -83,7 +91,10 @@ defmodule Contact.AccountsTest do
       insert(:user, username: "notbilly")
 
       assert %User{} = result_user = Accounts.find("billy")
-      assert result_user == expected_user
+      assert result_user.email == expected_user.email
+      assert result_user.username == expected_user.username
+      assert result_user.first_name == expected_user.first_name
+      assert result_user.last_name == expected_user.last_name
     end
 
     test "returns user by email" do
@@ -91,7 +102,10 @@ defmodule Contact.AccountsTest do
       insert(:user, username: "notbilly@bill.co")
 
       assert %User{} = result_user = Accounts.find("billy@bill.co")
-      assert result_user == expected_user
+      assert result_user.email == expected_user.email
+      assert result_user.username == expected_user.username
+      assert result_user.first_name == expected_user.first_name
+      assert result_user.last_name == expected_user.last_name
     end
 
     test "fail when neither are found" do

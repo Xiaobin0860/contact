@@ -9,7 +9,8 @@ defmodule Contact.TeamsTest do
 
       assert %Team{} = team = Teams.get_team(expected_team.id)
 
-      assert expected_team == team
+      assert expected_team.name == team.name
+      assert expected_team.owner.id == team.owner.id
     end
 
     test "create" do
@@ -23,7 +24,7 @@ defmodule Contact.TeamsTest do
       assert {:ok, %Team{} = team} = Teams.create_team(valid_team_attrs)
 
       assert team.name == valid_team_attrs["name"]
-      assert team.owner == user
+      assert team.owner.id == user.id
     end
 
     test "update" do
